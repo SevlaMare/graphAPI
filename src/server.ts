@@ -1,54 +1,23 @@
+// -------------------
+// code first approach
+// -------------------
+import path from 'node:path';
+// import { randomUUID } from 'node:crypto';
+import 'reflect-metadata';
 import { ApolloServer, gql } from 'apollo-server';
-import { randomUUID } from 'node:crypto';
+import { buildSchema } from 'type-graphql';
+import { AppointmentsResolver } from './resolvers/appointments_resolver';
 
-interface User {
-  id: string;
-  name: string;
+async function main() {
+  const schema = await buildSchema({
+    resolvers: [AppointmentsResolver],
+    emitSchemaFile: path.resovle(__dirname, 'typedefs.gql'),
+  });
+
+  const server = new ApolloServer({ schema });
+
+  const { url } = await server.listen();
+  console.log('server running on: ', url);
 }
-const users: User[] = [];
 
-// routes ~ typeDefs
-const typeDefs = gql`
-  type User {
-    id: String!
-    name: String!
-  }
-
-  type Query {
-    showUsers: [User!]!
-  }
-
-  type Mutation {
-    createUser(name: String!): User!
-  }
-`;
-
-const server = new ApolloServer({
-  typeDefs,
-
-  // controllers ~ resolvers
-  resolvers: {
-    Query: {
-      showUsers: () => {
-        return users;
-      },
-    },
-
-    Mutation: {
-      createUser: (_, args) => {
-        const newUser = {
-          id: randomUUID(),
-          name: args.name,
-        };
-
-        users.push(newUser);
-
-        return newUser;
-      },
-    },
-  },
-});
-
-void server.listen().then(({ url }) => {
-  console.log('running', url);
-});
+void main();

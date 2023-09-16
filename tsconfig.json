@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "es2021",
     "module": "commonjs",
 
     "outDir": "./dist",
     "rootDir": "./src",
 
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    // typegraphql require decorators
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   }
 }

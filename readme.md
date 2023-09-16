@@ -5,7 +5,8 @@
 ![screenshot](screenshot.png)
 
 <br>Here we see the core elements to work with GraphQL and how they are
-different from RESTful<br>
+different from RESTful. Besides compare the two ways of doing GraphQL APIs: code
+or schema first approach.<br>
 
 ## Content
 
@@ -24,14 +25,11 @@ different from RESTful<br>
 
 localhost:4000
 
-##### Resources (End Points)
-
-Available at tests/routes.http
-
 ## Requirements
 
 - [x] Create and read users
-- [x] Schema First approach
+- [x] Schema first approach
+- [x] Code first approach
 - [x] Typescript
 
 ## Built With
