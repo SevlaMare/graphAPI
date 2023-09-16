@@ -1,0 +1,12 @@
+mutation createUser($name: String!) {
+  createUser(name: $name) {
+    id
+  }
+}
+
+query Users {
+  showUsers {
+    name
+    id
+  }
+}
